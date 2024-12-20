@@ -215,6 +215,40 @@ cd grpc && python3 client.py --port 50000 --mode <sft|zero_shot|cross_lingual|in
 docker run -d --runtime=nvidia -p 50000:50000 cosyvoice:v1.0 /bin/bash -c "cd /opt/CosyVoice/CosyVoice/runtime/python/fastapi && python3 server.py --port 50000 --model_dir iic/CosyVoice-300M && sleep infinity"
 cd fastapi && python3 client.py --port 50000 --mode <sft|zero_shot|cross_lingual|instruct>
 ```
+## Docker Deployment
+
+To facilitate easy deployment, `CosyVoice` can be run within a Docker container. Follow the steps below to set up and run `CosyVoice` using Docker.
+
+### Prerequisites
+
+- Ensure that you have [Docker](https://www.docker.com/get-started) installed on your system.
+- For GPU support, install the [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html).
+
+### Steps to Deploy
+
+1. **Clone the Repository**:
+
+   ```bash
+   git clone --recursive https://github.com/Mxnjot/CosyVoice.git
+   cd CosyVoice
+2. **Build and Run the Docker Container**:
+
+   - For CPU-only deployment:
+     ```bash
+     docker build -t cosyvoice:latest .
+     docker run -d -p 5000:5000 cosyvoice:latest
+     ```
+
+   - For GPU deployment:
+     ```bash
+     docker build -t cosyvoice:latest .
+     docker run -d --gpus all -p 5000:5000 cosyvoice:latest
+     ```
+
+3. **Access the Service**:
+
+   Once the container is running, access the `CosyVoice` service at `http://localhost:5000`.
+
 
 ## Discussion & Communication
 
